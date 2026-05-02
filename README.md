@@ -1,84 +1,103 @@
-This repository contains my complete backend implementation for the Affordmed backend track. I have tried to keep the structure clean, practical, and easy to understand, so that anyone reviewing it can quickly navigate through the components and understand how everything works together.
+# Backend Assignment Workspace
 
-Project Structure
+This repository contains the complete backend implementation for the Affordmed backend track.
 
-The project is divided into a few clear modules, each handling a specific responsibility:
+## Structure
 
-logging_middleware/ A reusable structured logging system that is plugged into all services.
-notification_app_be/ The main backend service that exposes APIs for managing notifications.
-vehicle_maintence_scheduler/ A scheduler script that calculates optimal maintenance tasks for vehicles.
-notification_system_design.md Contains detailed answers for all assignment stages (system design, scaling, optimization, etc.).
-package.json Root workspace configuration to manage scripts and dependencies.
-Screenshots
+- `logging_middleware/` - reusable structured logging middleware
+- `notification_app_be/` - notification backend service with required API endpoints
+- `vehicle_maintence_scheduler/` - scheduler script for vehicle maintenance assignment
+- `notification_system_design.md` - assignment design document with stage-by-stage responses
+- `package.json` - root workspace configuration
 
-To make evaluation easier, I have included screenshots of working outputs:
+## Quick Start
 
-Vehicle Maintenance Scheduler screenshots are inside: vehicle_maintence_scheduler/
-Notification Backend screenshots are inside: notification_app_be/
-Getting Started
-Install Dependencies
-
-Run the following command to install all dependencies across the workspace:
-
+### Install all dependencies
+```bash
 npm run install:all
+```
 
-Start Backend Service
-
-To start the notification backend:
-
+### Start the backend service
+```bash
 npm run start:backend
+```
 
-Run Scheduler
-
-To execute the vehicle maintenance scheduler:
-
+### Run the scheduler
+```bash
 npm run start:scheduler
+```
 
-Implementation Details
-Logging Middleware
+## Implementation Details
 
-The logging middleware is integrated across all services and routes.
+### Logging Middleware
 
-Each log follows a structured format:
+Integrated into all backend services and routes. Each log entry includes:
+- `stack`: `backend`
+- `level`: `debug`, `info`, `warn`, `error`, or `fatal`
+- `package`: One of the allowed package types (middleware, service, handler, etc.)
+- `message`: Descriptive log message
 
-stack: always set to "backend"
-level: debug, info, warn, error, fatal
-package: identifies the source (middleware, service, handler, etc.)
-message: meaningful description of the event
+Logs are sent to the evaluation server at: `http://20.207.122.201/evaluation-service/logs`
 
-All logs are sent to the evaluation server:
+### Notification Backend Service
 
-http://20.207.122.201/evaluation-service/logs
+**Endpoints:**
 
-Notification Backend Service
+- `POST /logs`
+  - Validate and record structured backend logs
+  - Body: `{ "stack": "backend", "level": "info", "package": "service", "message": "..." }`
 
-This service exposes APIs to create, fetch, and manage notifications.
+- `POST /notifications`
+  - Create a new notification
+  - Body: `{ "userId": "1042", "type": "placement", "message": "Notification text" }`
+  - Returns: notification object with id and timestamp
 
-Available Endpoints
+- `GET /notifications?userId=1042&page=1&limit=20`
+  - Retrieve notifications with pagination
+  - Query parameters: userId, page, limit
+  - Returns: paginated list of notifications
 
-POST /logs
+- `POST /maintenance/schedule`
+  - Compute optimal vehicle maintenance schedule
+  - Body: `{ "vehicles": [...], "availableHours": 135 }`
+  - Returns: selected tasks with total impact and duration
 
-Stores structured logs
+### Vehicle Maintenance Scheduler
 
-POST /notifications
+Fetches depot and vehicle data from the evaluation API and computes the highest-impact maintenance selection using dynamic programming.
 
-Creates a new notification
+**Features:**
+- Fetches from `/depots` and `/vehicles` endpoints
+- Falls back to sample data if API is unavailable
+- Logs all scheduling events through the middleware
+- Outputs JSON report of selected maintenance tasks
 
-GET /notifications
+## Assignment Stages
 
-Fetches notifications with pagination support
+The complete assignment response is in `notification_system_design.md`:
 
-POST /maintenance/schedule
+- **Stage 1**: API Design and contract for campus notifications
+- **Stage 2**: Database schema and storage choice analysis
+- **Stage 3**: Query optimization and indexing strategy
+- **Stage 4**: Performance improvements for notification fetching
+- **Stage 5**: Reliable bulk notification delivery design
+- **Stage 6**: Priority inbox design for top 10 notifications
 
-Computes the best maintenance plan for vehicles based on constraints
-Vehicle Maintenance Scheduler
+## Submission Requirements
 
-This module is responsible for selecting the most impactful maintenance tasks.
+Before submitting:
 
-Key points:
+1. Logging middleware is integrated into all services
+2. All endpoints return proper JSON responses
+3. Design document includes all 6 stages with detailed responses
+4. Code is clean and follows naming conventions
+5. Git repository is initialized and ready
+6. Node modules are excluded from git via .gitignore
 
-Fetches data from external APIs (/depots and /vehicles)
-Uses dynamic programming to maximize impact under time constraints
-Falls back to sample data if API is unavailable
-Logs all steps using the logging middleware
-Outputs a JSON report of selected tasks
+## Notes
+
+- This is a backend-only implementation (no frontend code)
+- Uses Node.js with Express framework
+- Logging middleware is production-ready and sends logs to the evaluation server
+- The scheduler is robust and handles API unavailability gracefully
+
