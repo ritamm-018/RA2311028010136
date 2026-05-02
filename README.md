@@ -87,12 +87,12 @@ The complete assignment response is in `notification_system_design.md`:
 
 Before submitting:
 
-1. ✅ Logging middleware is integrated into all services
-2. ✅ All endpoints return proper JSON responses
-3. ✅ Design document includes all 6 stages with detailed responses
-4. ✅ Code is clean and follows naming conventions
-5. ✅ Git repository is initialized and ready
-6. ✅ Node modules are excluded from git via .gitignore
+1. Logging middleware is integrated into all services
+2. All endpoints return proper JSON responses
+3. Design document includes all 6 stages with detailed responses
+4. Code is clean and follows naming conventions
+5. Git repository is initialized and ready
+6. Node modules are excluded from git via .gitignore
 
 ## Notes
 

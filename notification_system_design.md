@@ -271,10 +271,10 @@ Database overwhelmed because notifications fetch on EVERY page load creates exce
 - Invalidate cache on new notification creation
 
 **Tradeoffs:**
-- ✅ Reduces DB load by 80-90%
-- ✅ Sub-millisecond response times
-- ❌ Cache invalidation complexity
-- ❌ Additional infrastructure cost
+- Reduces DB load by 80-90%
+- Sub-millisecond response times
+- Cache invalidation complexity
+- Additional infrastructure cost
 
 #### 2. Pagination with Infinite Scroll
 **Implementation:**
@@ -283,10 +283,10 @@ Database overwhelmed because notifications fetch on EVERY page load creates exce
 - Server provides cursor-based pagination
 
 **Tradeoffs:**
-- ✅ Reduces initial payload size
-- ✅ Better user experience
-- ❌ More complex client-side logic
-- ❌ Potential for duplicate loads
+- Reduces initial payload size
+- Better user experience
+- More complex client-side logic
+- Potential for duplicate loads
 
 #### 3. Read Replicas
 **Implementation:**
@@ -295,10 +295,10 @@ Database overwhelmed because notifications fetch on EVERY page load creates exce
 - Use connection pooling
 
 **Tradeoffs:**
-- ✅ Distributes read load
-- ✅ Improves query performance
-- ❌ Replication lag (eventual consistency)
-- ❌ Higher infrastructure cost
+- Distributes read load
+- Improves query performance
+- Replication lag (eventual consistency)
+- Higher infrastructure cost
 
 #### 4. Lazy Loading
 **Implementation:**
@@ -307,10 +307,10 @@ Database overwhelmed because notifications fetch on EVERY page load creates exce
 - Use virtual scrolling
 
 **Tradeoffs:**
-- ✅ Faster initial page loads
-- ✅ Reduced bandwidth
-- ❌ Multiple round trips
-- ❌ Complex state management
+- Faster initial page loads
+- Reduced bandwidth
+- Multiple round trips
+- Complex state management
 
 #### 5. Queue-Based Processing
 **Implementation:**
@@ -319,10 +319,10 @@ Database overwhelmed because notifications fetch on EVERY page load creates exce
 - Use background workers
 
 **Tradeoffs:**
-- ✅ Smooths write load spikes
-- ✅ Better resource utilization
-- ❌ Increased latency for new notifications
-- ❌ Additional queue infrastructure
+- Smooths write load spikes
+- Better resource utilization
+- Increased latency for new notifications
+- Additional queue infrastructure
 
 **Ranking for this use case:** 1. Caching, 2. Read replicas, 3. Pagination, 4. Lazy loading, 5. Queuing
 
