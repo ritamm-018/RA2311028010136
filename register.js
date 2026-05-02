@@ -9,12 +9,12 @@ const BASE_URL = process.env.BASE_URL || 'http://20.207.122.201/evaluation-servi
  */
 async function register() {
   const payload = {
-    email: process.env.EMAIL,
-    name: process.env.NAME,
-    mobileNo: process.env.MOBILE,
-    githubUsername: process.env.GITHUB_USERNAME,
-    rollNo: process.env.ROLL_NO,
-    accessCode: process.env.ACCESS_CODE
+    email: rd9169@srmist.edu.in,
+    name: Ritam Dutta,
+    mobileNo: 9741768650,
+    githubUsername: ritamm-018,
+    rollNo: RA2311028010136,
+    accessCode: QkbpxH
   };
 
   try {
