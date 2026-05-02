@@ -1,0 +1,24 @@
+{
+  "name": "afford-backend-assignment",
+  "version": "1.0.0",
+  "description": "Backend track assignment for Affordmed Campus Notifications Microservice",
+  "private": true,
+  "workspaces": [
+    "notification_app_be",
+    "vehicle_maintence_scheduler"
+  ],
+  "scripts": {
+    "install:all": "cd notification_app_be && npm install && cd ../vehicle_maintence_scheduler && npm install",
+    "start:backend": "cd notification_app_be && npm start",
+    "start:scheduler": "cd vehicle_maintence_scheduler && npm run",
+    "test": "echo 'Tests to be implemented'"
+  },
+  "keywords": [
+    "backend",
+    "notification",
+    "middleware",
+    "logging"
+  ],
+  "author": "",
+  "license": "MIT"
+}
